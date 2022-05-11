@@ -1,0 +1,19 @@
+<mat-form-field appearance="fill" *ngIf="fieldController">
+    <mat-label>{{field.label}}</mat-label>
+    <mat-select [formControl]="fieldController" multiple>
+      <mat-select-trigger>
+        {{ fieldController.value ? fieldController.value[0] : '' }}
+        <span
+          *ngIf="fieldController.value?.length > 1"
+          class="example-additional-selection"
+        >
+          (+{{ fieldController.value.length - 1 }}
+          {{ fieldController.value?.length === 2 ? 'other' : 'others' }})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let topping of toppingList" [value]="topping">{{
+        topping
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  

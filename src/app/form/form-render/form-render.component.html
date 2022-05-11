@@ -1,0 +1,27 @@
+<div class="tw-flex tw-flex-col" [ngSwitch]="field.displayType">
+    <app-om-textarea
+      *ngSwitchCase="'textbox'"
+      [field]="field"
+      [fieldController]="fieldController"
+    >
+    </app-om-textarea>
+    <app-om-date
+      *ngSwitchCase="'datepicker'"
+      [field]="field"
+      [fieldController]="fieldController"
+    >
+    </app-om-date>
+    <app-om-dropdown
+      *ngSwitchCase="'dropdown'"
+      [field]="field"
+      [fieldController]="fieldController"
+    >
+    </app-om-dropdown>
+    <app-om-input
+      *ngSwitchCase="'textarea'"
+      [field]="field"
+      [fieldController]="fieldController"
+    >
+    </app-om-input>
+  </div>
+  

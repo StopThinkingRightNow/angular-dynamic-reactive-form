@@ -1,0 +1,38 @@
+<form [formGroup]="dynamicForm">
+  <ng-container *ngFor="let field of fields; let i = index">
+    <div [ngSwitch]="field.displayType">
+        <ng-container  *ngSwitchCase="'object'">
+          <div [formGroupName]="field.key">
+            <div *ngFor="let subField of field?.object; let i = index">
+              <app-form-render 
+                [field]="subField"
+                [fieldController]="dynamicForm?.get(field?.key).get(subField?.key)">
+              </app-form-render>
+            </div>
+          </div>
+
+        </ng-container>
+      
+        <ng-container  *ngSwitchCase="'array'">
+          <div [formArrayName]="field.key">
+            <div *ngFor="let arrayField of field?.object; let i = index">
+              <div [formGroupName]="i">
+                <app-form-render 
+                  [field]="arrayField"
+                  [fieldController]="dynamicForm.get(field.key).get('' + i).get(arrayField.key)">
+                </app-form-render>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+          <ng-container *ngSwitchDefault> 
+              <app-form-render 
+                [field]="field"
+                [fieldController]="dynamicForm?.get(field.key)">
+            </app-form-render>
+          </ng-container>
+    </div>
+</ng-container>
+</form>
+ 
